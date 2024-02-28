@@ -3,7 +3,7 @@
 <p>If you see this text, the server is <strong>definitely</strong> working!</p>
 
 {{!-- Create a table --}}
-<table>
+<table id="people-table">
 
     {{!-- Header section --}}
     <thead>
@@ -34,3 +34,27 @@
         {{/each}}
     </tbody>
 </table>
+
+<!-- /views/index.hbs -->
+
+{{!-- Form to add a record to the table  --}}
+<h2>Adding Data with AJAX</h2>
+<p>To add a new person, please enter their information below and click 'Submit'!</p>
+<form id="add-person-form-ajax">
+    <label for="input-fname">First Name: </label>
+    <input type="text" name="input-fname" id="input-fname">
+    
+    <label for="input-lname">Last Name: </label>
+    <input type="text" name="input-lname" id="input-lname">
+
+    <label for="input-homeworld">Homeworld: </label>
+    <input type="number" name="input-homeworld" id="input-homeworld">
+
+    <label for="input-age">Age: </label>
+    <input type="number" name="input-age" id="input-age">
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_person.js"></script>

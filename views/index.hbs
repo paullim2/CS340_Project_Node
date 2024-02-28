@@ -1,10 +1,10 @@
 <!-- index.hbs -->
 <h1>The server is running!</h1>
 <p>If you see this text, the server is <strong>definitely</strong> working!</p>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 {{!-- Create a table --}}
-<table id="people-table">
-
+<table id="people-table">>
     {{!-- Header section --}}
     <thead>
 
@@ -16,6 +16,7 @@
                 {{@key}}
             </th>
             {{/each}}
+            <th>delete</th>
         </tr>
     </thead>
 
@@ -24,16 +25,18 @@
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value={{this.id}}>>
             <td>{{this.id}}</td>
             <td>{{this.fname}}</td>
             <td>{{this.lname}}</td>
             <td>{{this.homeworld}}</td>
             <td>{{this.age}}</td>
+            <td><button onclick="deletePerson({{this.id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="./js/delete_person.js"></script>
 
 <!-- /views/index.hbs -->
 
@@ -50,7 +53,7 @@
     {{!<label for="input-homeworld">Homeworld: </label>
     <input type="number" name="input-homeworld" id="input-homeworld">}}
 
-    <select name="input-homeworld" id="input-homeworld-ajax">
+    <select name="input-homeworld" id="input-homeworld">
         <option value="">Select a Planet</option>
         {{#each planets}}
         <option value="{{this.id}}">{{this.name}}</option>

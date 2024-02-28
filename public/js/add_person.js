@@ -56,7 +56,7 @@ addPersonForm.addEventListener("submit", function (e) {
 })
 
 
-// Creates a single row from an Object representing a single record from 
+// Creates a single row from an Object representing a single record from
 // bsg_people
 addRowToTable = (data) => {
 
@@ -78,6 +78,8 @@ addRowToTable = (data) => {
     let homeworldCell = document.createElement("TD");
     let ageCell = document.createElement("TD");
 
+    let deleteCell = document.createElement("TD");
+
     // Fill the cells with correct data
     idCell.innerText = newRow.id;
     firstNameCell.innerText = newRow.fname;
@@ -85,13 +87,24 @@ addRowToTable = (data) => {
     homeworldCell.innerText = newRow.homeworld;
     ageCell.innerText = newRow.age;
 
-    // Add the cells to the row 
+    deleteCell = document.createElement("button");
+    deleteCell.innerHTML = "Delete";
+    deleteCell.onclick = function(){
+        deletePerson(newRow.id);
+    };
+
+
+    // Add the cells to the row
     row.appendChild(idCell);
     row.appendChild(firstNameCell);
     row.appendChild(lastNameCell);
     row.appendChild(homeworldCell);
     row.appendChild(ageCell);
-    
+    row.appendChild(deleteCell);
+
+    // Add a row attribute so the deleteRow function can find a newly added row
+    row.setAttribute('data-value', newRow.id);
+
     // Add the row to the table
     currentTable.appendChild(row);
 }
